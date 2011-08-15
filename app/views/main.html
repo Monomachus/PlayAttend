@@ -1,0 +1,64 @@
+<!DOCTYPE html>
+
+<html>
+<head>
+<title>#{get 'title' /}</title>
+<meta charset="${_response_encoding}">
+<link rel="stylesheet" media="screen"
+	href="@{'/public/stylesheets/main.css'}">
+#{get 'moreStyles' /}
+<link rel="shortcut icon" type="image/png"
+	href="@{'/public/images/favicon.png'}">
+<script src="@{'/public/javascripts/jquery-1.5.2.min.js'}"
+	type="text/javascript" charset="${_response_encoding}"></script>
+#{get 'moreScripts' /}
+</head>
+<body>
+	<div id="wrapper">
+		<div id="header">
+			<a href="#"><img src="public/images/logo.png" alt="Logo" id="logo" /> </a>
+			<ul id="nav">
+				<li class="current_page_item">#{a @Application.index()}Home#{/a}</li>
+				<li><a href="#">About</a>
+				</li>
+				#{if user }
+					<li>#{a @Attendances.index()}Attendances#{/a}</li>
+					<li><span>Welcome, ${user?.name} ! </span><li>
+					<li>#{a @Secure.logout()}Logout#{/a}</li>
+				#{/if}
+				#{else}
+					<li>#{a @Secure.login()}Login#{/a}</li>
+				#{/else}
+			</ul>
+		</div>
+		#{doLayout /}
+	</div>
+	<div id="footer">
+		<div id="footer-wrap">
+			<p id="credit">
+				Design by <a href="http://fearlessflyer.com">Fearless Flyer</a>.<br />Coding
+				by <a href="http://www.themelab.com">Theme Lab</a>.
+			</p>
+			<img src="public/images/footer-logo.png" alt="Logo" />
+			<ul id="footer-nav">
+				<li class="first">#{a @Application.index()}Home#{/a}
+				</li>
+				<li><a href="#">About</a>
+				</li>
+				#{if user }
+					<li>#{a @Attendances.index()}Attendances#{/a}</li>
+					<li> Welcome, ${user?.name} ! <li>
+					<li>#{a @Secure.logout()}Logout#{/a}</li>
+				#{/if}
+				#{else}
+					<li>#{a @Secure.login()}Login#{/a}</li>
+				#{/else}
+				
+			</ul>
+			<p id="copyright">2010 Copyright &copy; corporateblue.net All
+				rights reserved</p>
+
+		</div>
+	</div>
+</body>
+</html>
